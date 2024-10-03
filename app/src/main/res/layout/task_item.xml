@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:padding="8dp"
+    app:cardBackgroundColor="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Phần hiển thị nội dung công việc -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:background="@drawable/background_edita">
+
+
+            <TextView
+                android:id="@+id/titleTxt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="40dp"
+                android:paddingVertical="4dp"
+                android:text="Tiêu đề công việc"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp" />
+
+
+
+        </LinearLayout>
+
+        <!-- Biểu tượng sửa và xóa nằm ở góc phải -->
+        <LinearLayout
+            android:id="@+id/editDeleteLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:gravity="end"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/editImg"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                app:tint="@color/third"
+                android:src="@drawable/edit" />
+
+            <ImageView
+                android:id="@+id/deleteImg"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/delete"
+                app:tint="@color/second"/>
+        </LinearLayout>
+        <CheckBox
+            android:id="@+id/checkBoxComplete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+
+
+            />
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>
