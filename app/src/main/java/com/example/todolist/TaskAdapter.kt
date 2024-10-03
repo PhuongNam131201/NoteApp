@@ -31,7 +31,7 @@ class TaskAdapter(
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = taskList[position]
         holder.taskText.text = task.name
-        holder.checkBoxComplete.isChecked = task.isCompleted // Đặt trạng thái ban đầu
+
 
         holder.editImg.setOnClickListener {
             onEditClick(position)
@@ -41,11 +41,15 @@ class TaskAdapter(
             onDeleteClick(position)
         }
 
+        holder.checkBoxComplete.setOnCheckedChangeListener(null)
+        holder.checkBoxComplete.isChecked = task.isCompleted
         holder.checkBoxComplete.setOnCheckedChangeListener { _, isChecked ->
-            task.isCompleted = isChecked // Cập nhật trạng thái trong danh sách
-            onCheckChange(position, isChecked) // Gọi callback
+            task.isCompleted = isChecked
+            onCheckChange(position, isChecked)
             Log.d("TaskAdapter", "Task: ${task.name}, Completed: $isChecked")
         }
+
+
     }
 
 

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,11 +55,22 @@ class MainActivity : AppCompatActivity() {
         val radioGroupFilter = findViewById<RadioGroup>(R.id.radioGroupFilter)
         radioGroupFilter.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.radioAll -> filterTasks("all")
-                R.id.radioCompleted -> filterTasks("completed")
-                R.id.radioIncomplete -> filterTasks("incomplete")
+                R.id.radioAll -> {
+                    Log.d("Filter", "Tất cả công việc được hiển thị")
+                    filterTasks("all")
+                }
+                R.id.radioCompleted -> {
+                    Log.d("Filter", "Chỉ công việc hoàn thành được hiển thị")
+                    filterTasks("completed")
+                }
+                R.id.radioIncomplete -> {
+                    Log.d("Filter", "Chỉ công việc chưa hoàn thành được hiển thị")
+                    filterTasks("incomplete")
+                }
+                else -> Log.d("Filter", "Không có bộ lọc nào được chọn")
             }
         }
+
 
         // Xử lý khi người dùng nhấn nút "Thêm"
         addTaskButton.setOnClickListener {
@@ -88,14 +100,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun filterTasks(filter: String) {
-        tasks.clear() // Xóa danh sách hiện tại
+        Log.d("FilterTasks", "Bắt đầu lọc với bộ lọc: $filter")
+        tasks.clear()
         when (filter) {
-            "all" -> tasks.addAll(completedTasks + incompleteTasks) // Hiển thị tất cả
-            "completed" -> tasks.addAll(completedTasks) // Hiển thị công việc đã hoàn thành
-            "incomplete" -> tasks.addAll(incompleteTasks) // Hiển thị công việc chưa hoàn thành
+            "all" -> tasks.addAll(completedTasks + incompleteTasks)
+            "completed" -> tasks.addAll(completedTasks)
+            "incomplete" -> tasks.addAll(incompleteTasks)
         }
-        taskAdapter.notifyDataSetChanged() // Cập nhật RecyclerView
+        Log.d("FilterTasks", "Số lượng công việc sau khi lọc: ${tasks.size}")
+        taskAdapter.notifyDataSetChanged()
     }
+
+
 
     // Hiển thị hộp thoại xác nhận trước khi sửa
     private fun showEditConfirmationDialog(position: Int) {
